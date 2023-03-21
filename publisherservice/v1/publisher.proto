@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+package publisher.v1;
+
+import "google/api/annotations.proto";
+import "protoc-gen-openapiv2/options/annotations.proto";
+import "health.proto";
+
+option go_package = "github.com/budhip/hermes";
+option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_swagger) = {
+  info: {
+    title: "Publisher Service";
+    version: "1.0";
+    description: "The publisher API consists of a set of APIs for publisher events on any message broker.";
+  };
+  host: "7e75f6e3-7b42-4db2-a2ba-c5eb547ccadf.mock.pstmn.io/";
+  base_path: "/";
+  schemes: HTTP;
+  schemes: HTTPS;
+  consumes: "application/json";
+  produces: "application/json";
+};
+
+service PublisherService {
+  rpc HealthLiveness(HealthLivenessRequest) returns (HealthLivenessResponse) {
+    option (google.api.http) = {get: "/api/v1/health/liveness"};
+  }
+}

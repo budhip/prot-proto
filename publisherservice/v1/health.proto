@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package publisher.v1;
+
+option go_package = "github.com/budhip/hermes";
+
+enum HealthStatus {
+  HEALTH_STATUS_UNSPECIFIED = 0;
+  HEALTH_STATUS_SERVING = 1;
+  HEALTH_STATUS_NOT_SERVING = 2;
+  HEALTH_STATUS_SERVICE_UNKNOWN = 3; // Used only by the Watch method.
+}
+
+message HealthLivenessRequest {
+  string service = 1;
+}
+message HealthLivenessResponse {
+  HealthStatus status = 1;
+}
